@@ -41,5 +41,13 @@ group by uri;
 que contiene la cantidad de visualizaciones por producto
 
 10) creo una tabla que se llama conversion a partir de el resultado de la consulta
-create table conversion AS
+create table conversion_G AS
 select product_id, cantidad/cantidad_visual.`_c1` as total from productos_vendidos inner join cantidad_visual where product_id = producto;
+11) visualisacion de la ruta de la tabla con show create table conversion_g;
+
+12) se exporta la tabla con sqoop con 
+sqoop export --connect jdbc:mysql://34.205.65.241:3306/ecommerce_cloudera --driver com.mysql.jdbc.Driver --username bootcamp --password bootcamp --table conversion_10 --hcatalog-table conver
+
+10) despues del export se consulta en la base de datos proporcionada por el profesor a mi me asignaron la numero 10;
+
+Gracias.
