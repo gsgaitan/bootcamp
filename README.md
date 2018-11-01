@@ -25,4 +25,21 @@ WITH SERDEPROPERTIES  (
 )
 STORED AS TEXTFILE
 LOCATION '/desafio';
-7)
+7) no se podian poner funsiones asi que la clase se cambio por org.apache.hadoop.hive.serde2.RegexSerDe
+8) se crea tabla a partir de 
+SELECT product_id, SUM(product_cantity) cantidad
+  from product_transaction
+  GROUP BY product_id;
+ que es la cantidad de productos vendidos
+
+9) se crea tabla a partir de 
+create table Cantidad_Visual AS
+select substr(uri,16,20) producto, count(uri)
+from access_log
+where uri like '%/item/id?skuID%'
+group by uri;
+que contiene la cantidad de visualizaciones por producto
+
+10) creo una tabla que se llama conversion a partir de el resultado de la consulta
+create table conversion AS
+select product_id, cantidad/cantidad_visual.`_c1` as total from productos_vendidos inner join cantidad_visual where product_id = producto;
